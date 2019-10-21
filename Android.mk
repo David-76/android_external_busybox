@@ -7,14 +7,14 @@ BB_PATH := $(LOCAL_PATH)
 BIONIC_ICS := false
 BIONIC_L := true
 
-BUSYBOX_WARNING_HIDE := -Wno-error=implicit-function-declaration -Wno-implicit-function-declaration -Wno-implicit-fallthrough \
-			-Wno-sign-compare -Wno-format-overflow -Wno-shift-negative-value -Wno-logical-not-parentheses -Wno-return-type
+BUSYBOX_WARNING_HIDE := -Wno-implicit-fallthrough -Wno-sign-compare -Wno-shift-negative-value \
+                        -Wno-logical-not-parentheses -Wno-return-type -Wno-error
 
 # Make a static library for regex.
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := android/regex/bb_regex.c
 LOCAL_C_INCLUDES := $(BB_PATH)/android/regex
-LOCAL_CFLAGS := -Wno-sign-compare
+LOCAL_CFLAGS := -Wno-sign-compare $(BUSYBOX_WARNING_HIDE)
 LOCAL_MODULE := libclearsilverregex
 include $(BUILD_STATIC_LIBRARY)
 
